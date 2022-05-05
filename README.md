@@ -1,3 +1,4 @@
+PERSONAL COPY OF https://github.com/njoubert/node-groupme
 node-groupme
 ============
 
