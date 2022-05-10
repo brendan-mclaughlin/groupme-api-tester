@@ -22,8 +22,9 @@ program
 
 var justPrintEverythingCallback = function(err, ret) {
     if (!err) {
-        var json = JSON.stringify(ret, null, " ");
-        // console.log(json);
+        //74533008
+        // var json = JSON.stringify(ret, null, " ");
+        console.log(ret);
         // fs.writeFile('myjsonfile.json', json, 'utf8', function(err) {
         //     if (err) throw err;
         //     console.log('complete');
@@ -31,22 +32,24 @@ var justPrintEverythingCallback = function(err, ret) {
         //console.log(ret.members);
         //console.log(JSON.stringify(ret.members[0].user_id, null, " "))
         //var members = JSON.stringify(ret.members, null, " ");
-        //console.log(members);
+
         var ids = [];
         for (var i = 0; i < ret.members.length; i++) {
-            var userId = ret.members[i].user_id;
+            var userId = ret.members[i].id;
             ids[i] = userId;
-            console.log(userId);
+
         }
         const jsonContent = JSON.stringify(ids, null, " ");
-
-        fs.writeFile("./userIds.json", jsonContent, 'utf8', function(err) {
+        fs.writeFile("dollarBeeruserIds.json", jsonContent, 'utf8', function(err) {
             if (err) {
                 return console.log(err);
             }
         });
-        console.log(ids.length);
-        //console.log(jsonContent.items.);
+        // // // console.log(x);
+        var obj = JSON.parse(fs.readFileSync('dollarBeeruserIds.json', 'utf8'));
+        console.log(obj[1]);
+        console.log(obj.length);
+        // console.log(jsonContent.length);
 
         console.log("hello");
     } else {
@@ -92,6 +95,8 @@ program
     .description("List a specific group.")
     .action(function(env) {
         requireArgs(["group_id"]);
+        // var idArr = JSON.parse(fs.readFileSync('dollarBeeruserIds.json', 'utf8'));
+
         API.Groups.show(program.authtoken, program.group_id, justPrintEverythingCallback);
     });
 
@@ -135,6 +140,8 @@ program
     .description("remove members to a group.")
     .action(function(env) {
         requireArgs(["member_id", "group_id"]);
+        //var x = 768500879;
+        //console.log(program.member_id);
         API.Members.remove(program.authtoken, program.group_id, program.member_id, justPrintEverythingCallback);
     });
 program

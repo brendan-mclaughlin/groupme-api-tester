@@ -28,12 +28,12 @@
     "test": "node ./test/test.js"
   },
   "dependencies": {
+    "dotenv": "^16.0.0",
     "mime": "1.x.x",
     "q": "0.9.x",
     "request": "^2.88.0",
     "websocket": "1.0.x"
   },
-  "devDependencies": {},
   "license": [
     {
       "type": "zlib",
